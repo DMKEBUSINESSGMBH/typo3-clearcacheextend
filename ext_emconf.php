@@ -27,13 +27,14 @@ $EM_CONF[$_EXTKEY] = array(
 	'modify_tables' => '',
 	'clearcacheonload' => 0,
 	'lockType' => '',
-	'author' => 'Juraj Sulek',
-	'author_email' => 'juraj@sulek.sk',
+	'author' => 'Juraj Sulek, Hannes Bochmann',
+	'author_email' => 'juraj@sulek.sk, dev@dmk-ebusiness.de',
 	'author_company' => '',
 	'CGLcompliance' => '',
 	'CGLcompliance_note' => '',
 	'constraints' => array(
 		'depends' => array(
+			'typo3' => '4.5.0-6.2.99',
 		),
 		'conflicts' => array(
 		),

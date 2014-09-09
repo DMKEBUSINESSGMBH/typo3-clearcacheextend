@@ -30,6 +30,7 @@
  * $Id: class.tx_cssfilelinks.php,v 0.0.7 2005/14/12 20:02:15 typo3 Exp $
  *
  * @author	Juraj Sulek <juraj@sulek.sk>
+ * @author  Hannes Bochmann <dev@dmk-ebusiness.de
  */
 /**
  * [CLASS/FUNCTION INDEX of SCRIPT]
@@ -50,8 +51,10 @@
  *  742:     function getCommandArray($string)
  *  879:     protected function findRootPid($pageID)
  *  901:     function makeDebug($string,$patern=array(),$replace=array())
+ *  925:     private function canBeInterpretedAsInteger($value)
  *
- * TOTAL FUNCTIONS: 13
+ *
+ * TOTAL FUNCTIONS: 14
  * (This index is automatically created/updated by the extension "extdeveval")
  *
  */
@@ -106,7 +109,7 @@
 									"list"=>";tt_address;tt_board;tt_guest;tt_products;tt_calender;tt_rating;tt_news;tipafriend;feuser_admin;direct_mail_subscription;");
 
 			$getstring=$confArray['cacheCmd'];
-			if(is_array($confArray) && $getstring!="" && !t3lib_div::testInt($getstring)){
+			if(is_array($confArray) && $getstring!="" && !$this->canBeInterpretedAsInteger($getstring)){
 				$command=substr($getstring,0,strpos($getstring,"("));
 				$this->debugChar=substr($getstring,-1);
 				if($this->debugChar=="d" || $this->debugChar=="l"){
@@ -720,7 +723,7 @@
 	 * @return	array
 	 */
 		function getCommandArrayIntern($string){
-			if(t3lib_div::testInt($string)){
+			if($this->canBeInterpretedAsInteger($string)){
 				return array("int"=>$string);
 			} elseif($string=='self'|| $string=='root') {
 				$id = $this->currentCommand=='pages'?$this->objArray->checkValue_currentRecord['uid']:$this->objArray->checkValue_currentRecord['pid'];
@@ -753,7 +756,7 @@
 					if(!is_array($innerArray)){return $this->makeDebug("syntax_error_pages_command_not_define_correctly");}
 					if(count($innerArray)==0){return $this->makeDebug("syntax_error_pages_command_not_define_correctly");}
 					foreach($innerArray as $innerAR){
-						if(t3lib_div::testInt($innerAR)){
+						if($this->canBeInterpretedAsInteger($innerAR)){
 							$commandArrayIntern[$command][]=$innerAR;
 						}else{
 							return $this->makeDebug("syntax_error_pages_command_only_int");
@@ -826,7 +829,7 @@
 							};
 
 							$commandArrayIntern['contains']['fieldtype']=$GLOBALS['TCA'][$commandTempArray[0]]['columns'][$commandTempArray2[0]]['config']['eval']=="int"?"int":$commandFieldType[$GLOBALS['TCA'][$commandTempArray[0]]['columns'][$commandTempArray2[0]]['config']['type']];
-							if($commandArrayIntern['contains']['fieldtype']=='int' && !t3lib_div::testInt($commandTempArray2[1])){
+							if($commandArrayIntern['contains']['fieldtype']=='int' && !$this->canBeInterpretedAsInteger($commandTempArray2[1])){
 								return $this->makeDebug("syntax_error_contains_plugin_wrongvalue_number",array("###table###","###field###","###value###"),array($commandTempArray[0],$commandTempArray2[0],$commandTempArray2[1]));
 							};
 							$commandArrayIntern['contains']['fieldvalue']=$commandTempArray2[1];
@@ -914,6 +917,20 @@
 			};
 			$this->error=true;
 			return array();
+		}
+
+		/**
+		 * Tests if the input can be interpreted as integer.
+		 *
+		 * @param mixed $value
+		 * @return boolean
+		 */
+		private function canBeInterpretedAsInteger($value) {
+			if (t3lib_utility_VersionNumber::convertVersionNumberToInteger(TYPO3_version) >= 4006000) {
+				return t3lib_utility_Math::canBeInterpretedAsInteger($value);
+			} else {
+				return t3lib_div::testInt($value);
+			}
 		}
 
 	}
