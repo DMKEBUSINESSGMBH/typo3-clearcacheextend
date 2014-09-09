@@ -1,0 +1,43 @@
+0.1.5   - Bug repaired (thx. to Stig Nørgaard Færch <snf@dkm.dk> for patch)
+
+0.1.4   - possible to set field in changed, sub(self), sub(root), updated to work with TYPO3 caching framework (thx. to Stig Nørgaard Færch <snf@dkm.dk> for patch)
+
+0.1.3	- Use the t3lib_div::devLog to store the debug messages. Now if you use the "l" instead of "d" the error messages are only stored by t3lib_div::devLog and they are not printed directly on screen.
+
+0.1.2	- Delete the RealUrl encode- and decodecache too.
+
+0.1.1	- Bug repaired by contains(plugin;...) (thx. to Pierre Rouwens for hint)
+		- Bug repaired by debug function. Now the plugin show all debug hints.
+
+0.1.0	- Control now if the "Show content from this page instead:"(page properties setting) or extension "Included pages(sr_include_pages)" is used
+
+0.0.10	- Patch applied (thx. to Bastian Sauert)
+
+0.0.9	- Bug repaired by contains(dam;....)
+
+0.0.8	- Bug repaired by contains(value;....) (thx. to Bastian Sauert for patch)
+
+0.0.7	- Bug repaired by contains(plugin;...)
+
+0.0.6	- Controll if DAM is installed by contains(dam;..)
+		- "changed" command added
+		- "pages" command added for "changed" command
+
+0.0.5	- JavaDoc comments added
+		- Debug function reworked and some debug hints added
+		- Some changes in manual
+		- Some bugs fixed
+
+0.0.4	- The contains(dam;...) command test now the pages_language_overlay too
+		- The contains(dam;...) command is now faster (it makes now maximal 3 Query's)
+		- Changes in manual
+		- Changes in SQL for getSubPages function
+		
+0.0.3 	- Bug repaired (thx. to Pierre Dudoret)
+		- The contains(dam;...) command works now faster (results are stored to a temp array and then processed at once)
+		- The contains(value;..) command can now work with pages_language_overlay too
+		- The contains(value;...) command test now in the TCA table if you don't try to enter string value into integer field
+
+0.0.2 	- Bug repaired
+
+0.0.1 	- First release
