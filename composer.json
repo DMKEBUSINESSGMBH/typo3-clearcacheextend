@@ -1,0 +1,29 @@
+{
+	"name" : "dmk/clearcacheextend",
+	"description" : "Extend TCEMAIN.clearCacheCmd width some userfull options like using of aliases, clearing whole branches, clearing pages on the ground of their content etc.",
+	"version" : "1.0.1",
+	"type" : "typo3-cms-extension",
+	"keywords" : ["TYPO3 CMS", "cache"],
+	"homepage" : "http://www.dmk-ebusiness.de/",
+	"license" : "GPL-2.0+",
+	"authors" : [
+		{
+			"name" : "Hannes Bochmann",
+			"email" : "hannes.bochmann@dmk-ebusiness.de",
+			"role" : "Developer"
+		},
+		{
+			"name" : "Juraj Sulek",
+			"email" : "juraj@sulek.sk",
+			"role" : "Developer"
+		}
+	],
+	"support": {
+		"email": "dev@dmk-ebusiness.de",
+		"source": "https://github.com/DMKEBUSINESSGMBH/typo3-clearcacheextend",
+		"issues": "https://forge.typo3.org/projects/extension-clearcacheextend"
+	},
+	"replace": {
+		"typo3-ter/clearcacheextend": "*"
+	}
+}
