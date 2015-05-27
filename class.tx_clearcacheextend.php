@@ -119,8 +119,7 @@
 					$getstring=substr($getstring,0,-1);
 					$this->debugMode=true;
 
-					global $LANG;
-					$LANG->includeLLFile("EXT:clearcacheextend/locallang.php");
+					$GLOBALS['LANG']->includeLLFile("EXT:clearcacheextend/locallang.php");
 				};
 				if($command=='changed'){
 					$getstring=$this->hasChanged($objArray,$getstring);
@@ -129,12 +128,13 @@
 
 				if($getstring=='none'){
 					/*if($this->debugMode){
-						t3lib_div::devLog($LANG->getLL("syntax").':'.$LANG->getLL("syntax_none").' ['.$confArray['cacheCmd'].']','clearcacheextend',0);
+						t3lib_div::devLog($GLOBALS['LANG']->getLL("syntax").':'.$GLOBALS['LANG']->getLL("syntax_none").' ['.$confArray['cacheCmd'].']','clearcacheextend',0);
 						if($this->showDebug){
-							echo "<br />".$LANG->getLL("syntax")."<strong style=\"color:green;\">".$LANG->getLL("syntax_none")."</strong>";
+							echo "<br />".$GLOBALS['LANG']->getLL("syntax")."<strong style=\"color:green;\">".$GLOBALS['LANG']->getLL("syntax_none")."</strong>";
 						}
 					}*/
 				}
+
 				if(($command=="alias") || ($command=="sub") || ($command=="contains") || ($command=="pages")){
 
 					$commandArray=$this->getCommandArray($getstring);
@@ -194,16 +194,16 @@
 					};
 					if($this->debugMode){
 						if(!$this->error){
-							t3lib_div::devLog($LANG->getLL("syntax").':'.$LANG->getLL("syntax_ok").' ['.$confArray['cacheCmd'].']','clearcacheextend',0,$LANG->getLL("cache_cleared").trim(implode(",",$this->plussArray),","));
+							t3lib_div::devLog($GLOBALS['LANG']->getLL("syntax").':'.$GLOBALS['LANG']->getLL("syntax_ok").' ['.$confArray['cacheCmd'].']','clearcacheextend',0,$GLOBALS['LANG']->getLL("cache_cleared").trim(implode(",",$this->plussArray),","));
 							if($this->showDebug){
-								echo "<br />".$LANG->getLL("syntax")."<strong style=\"color:green;\">".$LANG->getLL("syntax_ok")."</strong>
-								<br /><br />".$LANG->getLL("cache_cleared").trim(implode(",",$this->plussArray),",")."
+								echo "<br />".$GLOBALS['LANG']->getLL("syntax")."<strong style=\"color:green;\">".$GLOBALS['LANG']->getLL("syntax_ok")."</strong>
+								<br /><br />".$GLOBALS['LANG']->getLL("cache_cleared").trim(implode(",",$this->plussArray),",")."
 								<br /><br />";
 							}
 						}else{
-							t3lib_div::devLog($LANG->getLL("syntax").':'.$LANG->getLL("syntax_error").' ['.$confArray['cacheCmd'].']','clearcacheextend',2);
+							t3lib_div::devLog($GLOBALS['LANG']->getLL("syntax").':'.$GLOBALS['LANG']->getLL("syntax_error").' ['.$confArray['cacheCmd'].']','clearcacheextend',2);
 							if($this->showDebug){
-								echo "<br />".$LANG->getLL("syntax")."<strong style=\"color:red;\">".$LANG->getLL("syntax_error")."</strong>
+								echo "<br />".$GLOBALS['LANG']->getLL("syntax")."<strong style=\"color:red;\">".$GLOBALS['LANG']->getLL("syntax_error")."</strong>
 								<br />";
 							}
 						};
@@ -250,7 +250,7 @@
 
 			if((substr($newArray[0],0,8)!="changed(") || (substr($newArray[0],-1)!=")") || (strlen($newArray[0]) < 10) || (count($newArray) <3 ) || count($newArray) > 5){
 				if($this->debugMode){
-					t3lib_div::devLog($LANG->getLL("syntax").':'.$LANG->getLL("syntax_error"),'clearcacheextend',2,$GLOBALS['LANG']->getLL("syntax_error_chaged_empty"));
+					t3lib_div::devLog($GLOBALS['LANG']->getLL("syntax").':'.$GLOBALS['LANG']->getLL("syntax_error"),'clearcacheextend',2,$GLOBALS['LANG']->getLL("syntax_error_chaged_empty"));
 					if($this->showDebug){
 						echo "<br />".$GLOBALS['LANG']->getLL("syntax")."<strong class=\"color:red;\">".$GLOBALS['LANG']->getLL("syntax_error")."</strong>
 						<br />";
@@ -268,7 +268,7 @@
 			t3lib_div::loadTCA($command);
 			if(!is_array($GLOBALS['TCA'][$command])){
 				if($this->debugMode){
-					t3lib_div::devLog($LANG->getLL("syntax").':'.$LANG->getLL("syntax_error"),'clearcacheextend',2,str_replace('###table###',$command,$GLOBALS['LANG']->getLL('syntax_error_wrong_table')));
+					t3lib_div::devLog($GLOBALS['LANG']->getLL("syntax").':'.$GLOBALS['LANG']->getLL("syntax_error"),'clearcacheextend',2,str_replace('###table###',$command,$GLOBALS['LANG']->getLL('syntax_error_wrong_table')));
 					if($this->showDebug){
 						echo "<strong style=\"color:red;\">".str_replace('###table###',$command,$GLOBALS['LANG']->getLL('syntax_error_wrong_table'))."</strong><br />";
 						return 'none';
@@ -904,12 +904,12 @@
 		function makeDebug($string,$patern=array(),$replace=array()){
 			if($this->debugMode){
 				if(count($replace)==0){
-					t3lib_div::devLog($LANG->getLL("syntax").':'.$LANG->getLL("syntax_error"),'clearcacheextend',2,$GLOBALS['LANG']->getLL($string));
+					t3lib_div::devLog($GLOBALS['LANG']->getLL("syntax").':'.$GLOBALS['LANG']->getLL("syntax_error"),'clearcacheextend',2,$GLOBALS['LANG']->getLL($string));
 					if($this->showDebug){
 						echo "<strong style=\"color:red;\">".$GLOBALS['LANG']->getLL($string)."</strong>";
 					}
 				}else{
-					t3lib_div::devLog($LANG->getLL("syntax").':'.$LANG->getLL("syntax_error"),'clearcacheextend',2,str_replace($patern,$replace,$GLOBALS['LANG']->getLL($string)));
+					t3lib_div::devLog($GLOBALS['LANG']->getLL("syntax").':'.$GLOBALS['LANG']->getLL("syntax_error"),'clearcacheextend',2,str_replace($patern,$replace,$GLOBALS['LANG']->getLL($string)));
 					if($this->showDebug){
 						echo "<strong style=\"color:red;\">".str_replace($patern,$replace,$GLOBALS['LANG']->getLL($string))."</strong>";
 					}
