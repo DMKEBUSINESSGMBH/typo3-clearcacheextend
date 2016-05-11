@@ -1,3 +1,9 @@
+2.0.0   - added support for TYPO3 7.6
+		- set visibility of methods and properties
+		- refactoring and cleanup
+
+1.0.0   - added support for TYPO3 6.2
+
 0.1.5   - Bug repaired (thx. to Stig Nørgaard Færch <snf@dkm.dk> for patch)
 
 0.1.4   - possible to set field in changed, sub(self), sub(root), updated to work with TYPO3 caching framework (thx. to Stig Nørgaard Færch <snf@dkm.dk> for patch)
@@ -32,7 +38,7 @@
 		- The contains(dam;...) command is now faster (it makes now maximal 3 Query's)
 		- Changes in manual
 		- Changes in SQL for getSubPages function
-		
+
 0.0.3 	- Bug repaired (thx. to Pierre Dudoret)
 		- The contains(dam;...) command works now faster (results are stored to a temp array and then processed at once)
 		- The contains(value;..) command can now work with pages_language_overlay too
