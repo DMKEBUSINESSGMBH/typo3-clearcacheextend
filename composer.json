@@ -24,7 +24,8 @@
 		"issues": "https://forge.typo3.org/projects/extension-clearcacheextend"
 	},
 	"replace": {
-		"typo3-ter/clearcacheextend": "*"
+		"clearcacheextend": "self.version",
+		"typo3-ter/clearcacheextend": "self.version"
 	},
 	"require" : {
 		"typo3/cms-core" : ">=4.5.0 <=7.6.99",
