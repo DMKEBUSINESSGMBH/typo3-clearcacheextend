@@ -239,11 +239,7 @@ class tx_clearcacheextend {
 	protected function clearRealurlCaches(array $pageIds) {
 		if(tx_rnbase_util_Extensions::isLoaded('realurl')){
 			$realUrlVersionNumber = tx_rnbase_util_Extensions::getExtensionVersion('realurl');
-			if (tx_rnbase_util_TYPO3::convertVersionNumberToInteger($realUrlVersionNumber) >= 2000000) {
-				foreach ($pageIds as $pageId) {
-					CacheFactory::getCache()->clearUrlCacheForPage($pageId);
-				}
-			} else {
+			if (tx_rnbase_util_TYPO3::convertVersionNumberToInteger($realUrlVersionNumber) < 2000000) {
 				$GLOBALS['TYPO3_DB']->exec_DELETEquery(
 					'tx_realurl_urlencodecache','page_id IN (' . implode(',',$pageIds) . ')'
 				);
