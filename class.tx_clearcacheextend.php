@@ -993,25 +993,6 @@ class tx_clearcacheextend {
 	protected function canBeInterpretedAsInteger($value) {
 		return tx_rnbase_util_Math::isInteger($value);
 	}
-
-	/**
-	 * @return void
-	 */
-	public function clearCacheWithClearCacheCommandFromTsConfigByPid($pid) {
-		$configArray = $objectArray = array();
-		$tsConfig = $this->getPagesTsConfig($pid);
-		$configArray['cacheCmd'] = $tsConfig['TCEMAIN.']['clearCacheCmd'];
-		$this->clear_cacheCmdExtend($configArray, $objectArray);
-	}
-
-	/**
-	 * @param int $configPid
-	 *
-	 * @return array
-	 */
-	protected function getPagesTsConfig($configPid) {
-		return Tx_Rnbase_Backend_Utility::getPagesTSconfig($configPid);
-	}
 }
 
 if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/clearcacheextend/class.tx_clearcacheextend.php'])	{
